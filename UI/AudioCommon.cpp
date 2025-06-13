@@ -31,7 +31,8 @@ int NativeMix(int16_t *outStereo, int numFrames, int sampleRateHz) {
 	// Mix UI sound effects on top.
 	int validFrames = 0;
 	if (g_Config.iAudioSyncMode == (int)AudioSyncMode::GRANULAR) {
-		validFrames = g_granular.Mix(outStereo, numFrames, sampleRateHz);
+		g_granular.Mix(outStereo, numFrames, sampleRateHz);
+		validFrames = numFrames;
 	} else {
 		validFrames = g_resampler.Mix(outStereo, numFrames, false, sampleRateHz);
 	}
